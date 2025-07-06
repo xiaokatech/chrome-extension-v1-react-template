@@ -9,10 +9,10 @@
     "128": "icon/128.png"
   },
   "{{chrome}}.action": {
-    "default_popup": "src/popup.html"
+    "default_popup": "src/windows/popupWindow/popup.html"
   },
   "{{firefox}}.browser_action": {
-    "default_popup": "src/popup.html"
+    "default_popup": "src/windows/popupWindow/popup.html"
   },
   "background": {
     "{{chrome}}.service_worker": "src/background.ts",
@@ -27,6 +27,6 @@
   ],
   "permissions": ["sidePanel", "contextMenus", "storage"],
   "side_panel": {
-    "default_path": "src/sidebar.html"
+    "default_path": "src/windows/sidebarWindow/sidebar.html"
   }
 }
