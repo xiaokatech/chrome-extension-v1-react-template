@@ -10,13 +10,6 @@ function generateManifest() {
     description: pkg.description,
     version: pkg.version,
     ...manifest,
-    content_scripts: [
-      {
-        matches: ["<all_urls>"],
-        js: ["src/content_scripts.ts"],
-        run_at: "document_end",
-      },
-    ],
   };
 }
 

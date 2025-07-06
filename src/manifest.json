@@ -17,5 +17,16 @@
   "background": {
     "{{chrome}}.service_worker": "src/background.ts",
     "{{firefox}}.scripts": ["src/background.ts"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*", "<all_urls>"],
+      "js": ["src/content_scripts.ts"],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": ["sidePanel"],
+  "side_panel": {
+    "default_path": "src/sidebar.html"
   }
 }
