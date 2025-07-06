@@ -2,15 +2,29 @@ import { useEffect, useState } from "react";
 import "./Sidebar.css";
 
 export default function () {
-  const [tabId, setTabId] = useState<number>();
+  const [selectedText, setSelectedText] = useState<number>();
 
   useEffect(() => {
     console.log("Hello from the sidebar!");
+
+    chrome.storage.session.get("selectedText", ({ selectedText }) => {
+      setSelectedText(selectedText);
+    });
+
+    chrome.storage.session.onChanged.addListener((changes) => {
+      const lastWordChange = changes["selectedText"];
+
+      if (!lastWordChange) {
+        return;
+      }
+
+      setSelectedText(lastWordChange.newValue);
+    });
   }, []);
 
   return (
     <div>
-      <h1>Sidebar</h1>
+      <h1>Sidebar: {selectedText}</h1>
       <p>
         Template: <code>react-ts</code>
       </p>

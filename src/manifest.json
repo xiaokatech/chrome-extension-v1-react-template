@@ -25,7 +25,7 @@
       "run_at": "document_end"
     }
   ],
-  "permissions": ["sidePanel"],
+  "permissions": ["sidePanel", "contextMenus", "storage"],
   "side_panel": {
     "default_path": "src/sidebar.html"
   }
