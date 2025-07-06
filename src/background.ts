@@ -12,24 +12,20 @@ browser.runtime.onInstalled.addListener((details) => {
 });
 
 function setupContextMenu() {
+  // @Source: https://github.com/GoogleChrome/chrome-extensions-samples/tree/main/functional-samples/sample.sidepanel-dictionary
   chrome.contextMenus.create({
     id: EContextMenuItem.SELECT_TEXT,
     title: "Select Text",
     contexts: ["selection"],
   });
 
+  // @Source: https://github.com/GoogleChrome/chrome-extensions-samples/tree/main/functional-samples/cookbook.sidepanel-open
   chrome.contextMenus.create({
     id: EContextMenuItem.OPEN_SIDE_PANEL,
     title: "Open side panel",
     contexts: ["all"],
   });
 }
-
-// === Others - start ===
-// chrome.tabs.onActivated.addListener(async (data) => {
-//   console.log("Tab activated:", data);
-// });
-// === Others - end ===
 
 // === ContextMenus.onClicked events manager - start ===
 chrome.contextMenus.onClicked.addListener((data, tab) => {
@@ -51,3 +47,39 @@ chrome.contextMenus.onClicked.addListener((data, tab) => {
   }
 });
 // === ContextMenus.onClicked events manager - end ===
+
+// === Runtime.onMessage events manager - start ===
+// @Source: https://github.com/GoogleChrome/chrome-extensions-samples/tree/main/functional-samples/cookbook.sidepanel-site-specific
+// chrome.runtime.onMessage.addListener((message, sender) => {
+//   // The callback for runtime.onMessage must return falsy if we're not sending a response
+//   (async () => {
+//     if (message.type === 'open_side_panel') {
+//       // This will open a tab-specific side panel only on the current tab.
+//       await chrome.sidePanel.open({ tabId: sender.tab.id });
+//       await chrome.sidePanel.setOptions({
+//         tabId: sender.tab.id,
+//         path: 'sidepanel-tab.html',
+//         enabled: true
+//       });
+//     }
+//   })();
+// });
+// === Runtime.onMessage events manager - end ===
+
+// === Others - start ===
+// @Source: https://github.com/GoogleChrome/chrome-extensions-samples/tree/main/functional-samples/cookbook.sidepanel-multiple
+// const welcomePage = 'sidepanels/welcome-sp.html';
+// const mainPage = 'sidepanels/main-sp.html';
+
+// chrome.runtime.onInstalled.addListener(() => {
+//   chrome.sidePanel.setOptions({ path: welcomePage });
+//   chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
+// });
+
+// chrome.tabs.onActivated.addListener(async ({ tabId }) => {
+//   const { path } = await chrome.sidePanel.getOptions({ tabId });
+//   if (path === welcomePage) {
+//     chrome.sidePanel.setOptions({ path: mainPage });
+//   }
+// });
+// === Others - end ===
