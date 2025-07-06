@@ -36,7 +36,29 @@ export default function () {
           );
         }}
       >
-        Send Message to Content Script
+        button 1: Send Message to Content Script
+      </button>
+      <button
+        onClick={() => {
+          console.log("Button clicked, opening sidebar...");
+          chrome.tabs.query(
+            { active: true, currentWindow: true },
+            async function (tabs) {
+              const tab = tabs[0];
+              if (tab.id) {
+                console.log("Opening sidebar for tab:", tab.id);
+                const options = await chrome.sidePanel.getOptions({
+                  tabId: tab.id,
+                });
+                console.log("Current side panel options:", options);
+                const result = await chrome.sidePanel.open({ tabId: tab.id });
+                console.log("Sidebar opened:", result);
+              }
+            }
+          );
+        }}
+      >
+        button 2: Open Sidebar
       </button>
     </div>
   );
