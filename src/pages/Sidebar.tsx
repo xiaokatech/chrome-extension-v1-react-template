@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
 import "./Sidebar.css";
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 export default function () {
   const [selectedText, setSelectedText] = useState<number>();
@@ -27,6 +28,9 @@ export default function () {
       <h1 className="text-3xl font-bold underline text-white">Hello world!</h1>
 
       <h1>Sidebar: {selectedText}</h1>
+      <div className="flex min-h-svh flex-col items-center justify-center">
+        <Button>Click me</Button>
+      </div>
       <p>
         Template: <code>react-ts</code>
       </p>
