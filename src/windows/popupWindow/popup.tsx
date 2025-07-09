@@ -1,8 +1,9 @@
+import "../../styles/tailwindcss.css";
+
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Popup from "./pages/Popup";
 
-import "./styles/tailwindcss.css";
+import Popup from "@/pages/Popup";
 
 ReactDOM.createRoot(document.body).render(
   <React.StrictMode>
